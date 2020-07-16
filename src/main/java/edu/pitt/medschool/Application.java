@@ -9,7 +9,7 @@ import java.util.TimeZone;
 import edu.pitt.medschool.config.InfluxappConfig;
 import edu.pitt.medschool.framework.util.Util;
 import edu.pitt.medschool.service.AggregationService;
-
+import edu.pitt.medschool.service.AutoImportService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +22,8 @@ import edu.pitt.medschool.framework.util.TimeUtil;
 
 @SpringBootApplication
 public class Application implements ApplicationRunner {
+    @Autowired
+    AutoImportService autoImportService;
     @Autowired
     AggregationService aggregationService;
 
@@ -62,5 +64,6 @@ public class Application implements ApplicationRunner {
                 logger.error(Util.stackTraceErrorToString(se));
             }
         }
+        autoImportService.initImport();
     }
 }
