@@ -24,7 +24,7 @@ public class AutoImportService {
     private int second = 0;
 
 
-    private Timer timer = null;
+    private Timer timer = new Timer();
 
 
     public void start() {
@@ -35,7 +35,6 @@ public class AutoImportService {
             cal.set(Calendar.SECOND, this.second);
 
 
-            timer = new Timer();
             timer.schedule(new TimerTask() {
                 public void run() {
                     if(! Util.filesInFolder(FILE_TO_IMPORT , "csv").isEmpty()
@@ -62,7 +61,6 @@ public class AutoImportService {
         }else{
             timer.cancel();
             timer.purge();
-            timer = null;
         }
 
     }
