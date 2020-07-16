@@ -57,12 +57,6 @@ $(document)
                                 $("#minute").val(data.data.minute);
                                 $("#second").val(data.data.second);
                                 $("#autoImportSwitch").attr('checked', data.data.checked);
-
-                                if(data.data.checked){
-                                    $("#hour").attr('disabled','');
-                                    $("#minute").attr('disabled','');
-                                    $("#second").attr('disabled','');
-                                }
                             },
                             'error': function() {}
                         });
@@ -308,9 +302,9 @@ $(document)
                         }
 
                         if(checked){
-                            $("#hour").attr('disabled','');
-                            $("#minute").attr('disabled','');
-                            $("#second").attr('disabled','');
+                            $("#hour").attr('disabled', '');
+                            $("#minute").attr('disabled', '');
+                            $("#second").attr('disabled', '');
                         }else{
                             $("#hour").removeAttr('disabled');
                             $("#minute").removeAttr('disabled');
