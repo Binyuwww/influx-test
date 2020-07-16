@@ -788,6 +788,7 @@ public class ImportCsvService {
     }
 
     private void moveAndDelete(String path, Boolean success){
+        System.out.println(path);
         try {
             File afile = new File(path);
             String destnation;
@@ -804,13 +805,10 @@ public class ImportCsvService {
                 System.out.println("File "+afile.getName()+" is failed to move!");
             }
             String txtpath = path.replace(".csv",".txt");
+            System.out.println(txtpath);
             File txt = new File(txtpath);
             if(txt.exists()){
-                if(success){
-                    txt.delete();
-                }else{
-                    moveFile(destnation,txt);
-                }
+                txt.delete();
             }
         } catch (Exception e) {
             e.printStackTrace();

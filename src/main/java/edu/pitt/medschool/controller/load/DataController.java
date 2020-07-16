@@ -156,6 +156,18 @@ public class DataController {
         return map;
     }
 
+//    @RequestMapping(value = "api/data/ImportErd")
+//    @ResponseBody
+//    public Map<String, Object> covertToCsv(@RequestBody(required = false) SearchFileVO dir, String dirString, Model model) {
+//        Map<String, Object> map = new HashMap<>();
+//        map.put("msg","success");
+//        String[] allAR = new String[dir.getFiles().size()];
+//        for (int i = 0; i < allAR.length; i++) {
+//            allAR[i] = dir.getFiles().get(i);
+//        }
+//        convertToCsvServies.covertAndSend(allAR);
+//        return map;
+//    }
 
     @RequestMapping(value = "api/data/timeDrift")
     @ResponseBody
@@ -169,16 +181,12 @@ public class DataController {
     // import patients
     @RequestMapping(value = "api/data/importPatients")
     @ResponseBody
-    public RestfulResponse ImportPatients(@RequestParam(name = "dir") String dirString) {
-        Map map = patientService.getPatientsFromCsv(dirString);
-        RestfulResponse response;
-        if(map.get("msg") == "success"){
-            response = new RestfulResponse(1,"success");
-        }else{
-            response = new RestfulResponse(2,"failed");
-        }
-        response.setData(map.get("num"));
-        return response;
+    public Map<String,Object> ImportPatinets(@RequestParam(name = "dir") String dirString, Model model)
+        throws Exception{
+        Map map = new HashMap<>();
+        map = patientService.getPatientsFromCsv(dirString);
+        System.out.println("**********************************Import finished**********************************");
+        return map;
     }
 
     @RequestMapping(value = "/api/data/activity/list")
